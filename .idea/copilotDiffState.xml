@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/app/ui/fonts.ts">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/app/ui/fonts.ts" />
+              <option name="originalContent" value="import { Inter， Lusitana } from 'next/font/google';&#10;&#10;export const inter = Inter({ subsets: ['latin'] });&#10;&#10;export const lusitana = Lusitana({&#10;  weight: ['400', '700'],&#10;  subsets: ['latin'],&#10;});" />
+              <option name="updatedContent" value="import { Inter, Lusitana } from 'next/font/google';&#10;&#10;export const inter = Inter({ subsets: ['latin'] });&#10;&#10;export const lusitana = Lusitana({&#10;  weight: ['400', '700'],&#10;  subsets: ['latin'],&#10;});" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
