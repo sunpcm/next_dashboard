@@ -2,7 +2,9 @@ import bcrypt from 'bcrypt';
 import postgres from 'postgres';
 import { invoices, customers, revenue, users } from '../lib/placeholder-data';
 
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
+const sql = postgres(process.env.POSTGRES_URL!, { 
+  ssl: process.env.NODE_ENV === 'production' ? 'require' : false 
+});
 
 async function seedUsers() {
   await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
@@ -103,15 +105,26 @@ async function seedRevenue() {
 
 export async function GET() {
   try {
-    const result = await sql.begin((sql) => [
-      seedUsers(),
-      seedCustomers(),
-      seedInvoices(),
-      seedRevenue(),
-    ]);
+    console.log('Starting database seeding...');
+    
+    await seedUsers();
+    console.log('Users seeded successfully');
+    
+    await seedCustomers();
+    console.log('Customers seeded successfully');
+    
+    await seedInvoices();
+    console.log('Invoices seeded successfully');
+    
+    await seedRevenue();
+    console.log('Revenue seeded successfully');
 
     return Response.json({ message: 'Database seeded successfully' });
   } catch (error) {
-    return Response.json({ error }, { status: 500 });
+    console.error('Seeding error:', error);
+    return Response.json({ 
+      error: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined
+    }, { status: 500 });
   }
 }
