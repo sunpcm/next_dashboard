@@ -1,6 +1,10 @@
 // import postgres from 'postgres';
 
-// const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
+import postgres from 'postgres';
+//
+// const sql = postgres(process.env.POSTGRES_URL!, {
+//   ssl: process.env.NODE_ENV === 'production' ? 'require' : false
+// });
 
 // async function listInvoices() {
 // 	const data = await sql`
